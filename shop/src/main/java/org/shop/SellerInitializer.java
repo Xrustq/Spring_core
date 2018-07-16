@@ -7,16 +7,20 @@ import java.util.Map;
 
 import org.shop.api.SellerService;
 import org.shop.data.Seller;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * The Seller Initializer util class.
  */
+
 public class SellerInitializer {
 
     /** The seller service. */
+    @Autowired
     private SellerService sellerService;
-    
+
     /** The seller names. */
+    @Autowired
     private Map<Long, String> sellerNames = Collections.emptyMap();
 
     /**

@@ -6,9 +6,13 @@ import org.shop.data.User;
 /**
  * The User Initializer util class.
  */
+
+
 public class UserInitializer {
 
-    /** The user service. */
+    /**
+     * The user service.
+     */
     private UserService userService;
 
     /**
@@ -20,17 +24,17 @@ public class UserInitializer {
         super();
         this.userService = userService;
     }
-    
+
     /**
      * Inits the users.
      */
     public void initUsers() {
         User user = null;
-        
+
         user = new User();
         user.setUsername("Ivan Ivanov");
         userService.registerUser(user);
-        
+
         user = new User();
         user.setUsername("Petr Petrov");
         userService.registerUser(user);

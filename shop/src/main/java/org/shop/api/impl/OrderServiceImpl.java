@@ -11,11 +11,15 @@ import org.shop.data.Order;
 import org.shop.data.Proposal;
 import org.shop.data.User;
 import org.shop.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 public class OrderServiceImpl implements OrderService {
 
+    @Autowired
     private OrderRepository orderRepository;
-    
+
+    @Autowired
     private ItemService itemService;
 
     @Override
@@ -24,29 +28,29 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order();
         order.setUser(user);
         order.setCreatedDate(new Date());
-        
+
         Long orderId = orderRepository.createOrder(order);
-        
+
         //save item objects
         for (Item item : items) {
             item.setOrder(order);
             itemService.createItem(item);
         }
-        
+
         return orderId;
     }
-    
+
     public Long createOrder(User user, Proposal... proposals) {
         List<Item> items = new ArrayList<Item>();
-        
+
         for (Proposal proposal : proposals) {
             Item item = new Item();
             item.setProduct(proposal.getProduct());
             item.setPrice(proposal.getPrice());
-            
+
             items.add(item);
         }
-        
+
         return createOrder(user, items.toArray(new Item[items.size()]));
     }
 
